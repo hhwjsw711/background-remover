@@ -93,7 +93,7 @@ export default {
         environment: {
           BG_REMOVE_LAMBDA_NAME: lambdaFunction.functionName,
           BUCKET_NAME: bucket.bucketName,
-          NEXT_PUBLIC_BUCKET_URL: `https://${bucket.bucketName}.s3.amazonaws.com`,
+          NEXT_PUBLIC_BUCKET_URL: `https://${bucket.bucketName}.s3.ap-southeast-1.amazonaws.com`,
           DATABASE_URL: process.env.DATABASE_URL,
           GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
           GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
