@@ -15,7 +15,7 @@ export default {
   config() {
     return {
       name: "background-remover",
-      region: "us-east-1",
+      region: "ap-southeast-1",
     };
   },
   stacks(app) {
@@ -95,8 +95,8 @@ export default {
           BUCKET_NAME: bucket.bucketName,
           NEXT_PUBLIC_BUCKET_URL: `https://${bucket.bucketName}.s3.amazonaws.com`,
           DATABASE_URL: process.env.DATABASE_URL,
-          GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-          GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+          GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+          GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
           HOST_NAME: process.env.HOST_NAME,
           NEXT_PUBLIC_HOST_NAME: process.env.NEXT_PUBLIC_HOST_NAME,
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:

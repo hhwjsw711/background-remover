@@ -69,7 +69,7 @@ const CookiesPage: NextPage = () => {
         <p>
           We use next-auth to authenticate users on our application. Next-auth
           is a library which allows users to authenticate using various third
-          party services, such as google, which makes it easy to sign up and
+          party services, such as github, which makes it easy to sign up and
           start using our application.
         </p>
       </main>

@@ -77,7 +77,7 @@ export function Header() {
           <button
             className="btn-primary btn hidden md:block"
             onClick={() => {
-              signIn("google").catch(console.error);
+              signIn("github").catch(console.error);
             }}
           >
             Sign In
@@ -143,7 +143,7 @@ export function Header() {
                 <button
                   className="p-4"
                   onClick={() => {
-                    signIn("google").catch(console.error);
+                    signIn("github").catch(console.error);
                   }}
                 >
                   Sign In

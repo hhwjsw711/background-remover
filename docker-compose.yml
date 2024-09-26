@@ -24,7 +24,7 @@ services:
     build: .
     restart: always
     environment:
-      DATABASE_URL: postgresql://postgres:example@bg-db:5433/postgres
+      DATABASE_URL: postgresql://postgres:example@bg-db:5432/postgres
     ports:
       - "5556:5555"
     depends_on:

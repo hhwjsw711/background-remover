@@ -7,7 +7,7 @@ new S3rver({
   directory: "./s3",
   configureBuckets: [
     {
-      name: "wdc-background-remove",
+      name: "hhw-background-remove",
       configs: [fs.readFileSync("./cors.xml")],
     },
   ],
