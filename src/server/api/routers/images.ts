@@ -12,6 +12,28 @@ const UPLOAD_MAX_FILE_SIZE = 5_000_000;
 
 const lambdaClient = new LambdaClient({});
 
+async function callLocalLambda(s3Key: string): Promise<string> {
+  try {
+    const response = await fetch('http://localhost:5000/remove-background', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ s3Key }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.newS3Key;
+  } catch (error) {
+    console.error('Error calling local Lambda:', error);
+    throw new Error('Failed to process image locally');
+  }
+}
+
 export const imagesRouter = createTRPCRouter({
   createPresignedUrl: protectedProcedure.mutation(async ({ ctx, input }) => {
     const imageId = uuidv4();
@@ -110,6 +132,9 @@ export const imagesRouter = createTRPCRouter({
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           Buffer.from(response.Payload as any) as unknown as string
         ) as string;
+      } else if (env.NODE_ENV === "development") {
+        // 在非生产环境中调用本地Lambda
+        newS3Key = await callLocalLambda(image.imageId);
       } else {
         newS3Key = image.imageId;
       }
