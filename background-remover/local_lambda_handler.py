@@ -34,12 +34,17 @@ def process_image(key):
         s3_client.put_object(Body=output, Bucket=BUCKET_NAME, Key=new_key)
         print(f"处理后的图像已保存到S3: {new_key}")
 
-        # 保存处理后的图像到本地（用于调试）
+        # 创建用于存储处理后图像的文件夹
+        output_folder = Path("./processed_images")
+        output_folder.mkdir(exist_ok=True)
+
         # 确保文件名有正确的扩展名
         _, file_extension = os.path.splitext(key)
         if not file_extension:
             file_extension = '.png'  # 默认使用 PNG 格式
-        output_path = f"./processed_{key}{file_extension}"
+        
+        # 使用 Path 来处理文件路径
+        output_path = output_folder / f"processed_{key}{file_extension}"
         
         # 使用 PIL 来保存图像
         img = Image.open(BytesIO(output))

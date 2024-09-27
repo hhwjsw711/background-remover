@@ -6,7 +6,9 @@
   "scripts": {
     "build": "next build",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe",
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"python background-remover/local_lambda_handler.py\"",
+    "dev:next": "next dev",
+    "dev:python": "python background-remover/local_lambda_handler.py",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
@@ -77,6 +79,7 @@
     "autoprefixer": "^10.4.14",
     "aws-cdk-lib": "2.84.0",
     "babel-jest": "^29.5.0",
+    "concurrently": "^9.0.1",
     "constructs": "10.1.156",
     "eslint": "^8.41.0",
     "eslint-config-next": "13.1.6",
